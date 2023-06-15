@@ -6,21 +6,23 @@ using System.Web;
 
 namespace AgendamentoOnline.Models
 {
+    public class PatientUser : Patient
+    {
+        public override int Type { set => throw new NotImplementedException(); }
+    }
     public abstract class Patient : User
     {
-        [Required(ErrorMessage = "An Album Title is required")]
 
-        public string Name { get; set; }
+        [Required(ErrorMessage = "An Health Insurance is required")]
 
-        [Required(ErrorMessage = "An Album Title is required")]
-        public string Identification { get; set; }
-        [Required(ErrorMessage = "An Album Title is required")]
         public int HealthInsurance { get; set; }
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "An Mother Name is required")]
+
         public string MotherName { get; set; }
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "An Father Name is required")]
+
         public string FatherName { get; set; }
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "An Birth Date is required")]
         public DateTime Birth { get; set; }
         public override int Type { get => Type = 2; }
 

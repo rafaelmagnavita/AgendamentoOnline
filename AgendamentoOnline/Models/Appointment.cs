@@ -12,7 +12,7 @@ namespace AgendamentoOnline.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "An Doctor Name is required")]
         [DisplayName("Doctor")]
 
         public int DoctorID { get; set; }
@@ -22,10 +22,10 @@ namespace AgendamentoOnline.Models
         public DateTime UpdatedOn { get; set; }
         public DateTime CreatedOn { get; set; }
 
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "Any Schedule Time is required")]
         public DateTime ScheduleTime { get; set; }
 
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "Any Motive is required")]
 
         public string Motive { get; set; }
 
