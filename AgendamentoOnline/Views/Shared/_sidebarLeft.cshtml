@@ -1,0 +1,63 @@
+﻿
+@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+    var imgSrc = string.Empty;
+}
+<aside class="main-sidebar elevation-4">
+    <!-- Brand Logo -->
+    <a href="@Url.Action("Index", "Home")" class="brand-link text-truncate">
+        <img id="logo-img" src="@imgSrc" alt="Logo Empresa" class="brand-image" style="opacity: .8; max-height: 27px;">
+        <span class="brand-text font-weight-light" rel="tooltip" data-toggle="tooltip" title="">Menu</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- SidebarSearch Form -->
+        <div class="form-inline pt-3">
+            <div class="input-group" data-widget="sidebar-search" data-not-found-text='Sem Resultado!'>
+                <input class="form-control form-control-sidebar" type="search" placeholder="Buscar" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column nav-compact nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Home")" class="nav-link @(string.Format("{0}", controller) == "Home"?"active":string.Empty)">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Home
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Colaborador")" class="nav-link @(string.Format("{0}", controller) == "Colaborador" ? "active" : string.Empty)">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Appointments
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "Veiculo")" class="nav-link @(string.Format("{0}", controller) == "Veiculo" ? "active" : string.Empty)">
+                        <i class="nav-icon fas fa-car"></i>
+                        <p>
+                            Configuration
+                        </p>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+</aside>
+

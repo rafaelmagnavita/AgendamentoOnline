@@ -39,5 +39,101 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            var optionsTelefone = {
+                selectOnFocus: true,
+                placeholder: "(__) _____-____",
+                onKeyPress: function (val, e, field, options) {
+                    var masks = ['(00) 00000-0000', '(00) 0000-000#'];
+                    var mask = (val.length >= 15) ? masks[0] : masks[1];
+                    $(field).mask(mask, options);
+                }
+            };
+
+            $("#Cpf").mask("000.000.000-00");
+            $("#Rg").mask("00.000.000-00", { placeholder: "___.___.___-__", onKeyPress: function (val, e, field, options) { var masks = ['00.000.000-00', '00.000.000-0#']; var mask = (val.length >= 13) ? masks[0] : masks[1]; $(field).mask(mask, options); } });
+            $("#Cnpj").mask("00.000.000/0000-00", { placeholder: "__.___.___/____-__" });
+            $("#Cep").mask("00000-000", { placeholder: "_____-___" });
+            $("#telefone").mask("(00) 00000-0000", optionsTelefone);
+            $("#TelefoneEmergencia").mask("(00) 00000-0000", optionsTelefone);
+            $("#celular").mask("(00) 00000-0000", optionsTelefone);
+            $("#celular1").mask("(00) 00000-0000", optionsTelefone);
+            $("#Passaporte").mask("SS000000", { placeholder: "PASSAPORTE: (AB123456)" });
+            $("#Rne").mask("S000000-S", { placeholder: "RNE : (A123456-B)" });
+            $("#Cnh").mask("000000000000", { placeholder: "Nº CNH (9 a 11 Dígitos)" });
+
+            $.fn.datepicker.defaults.format = 'dd/mm/yyyy';
+            $.fn.datepicker.defaults.language = 'pt-BR';
+            $.fn.datepicker.defaults.autoclose = true;
+            $.fn.datepicker.defaults.orientation = "bottom";
+            $.fn.datepicker.defaults.todayHighlight = true;
+            $('#datepicker .input-group.date').datepicker();
+
+            $('.input-group .date').datepicker({
+                format: 'dd/mm/yyyy',
+                language: 'pt-BR',
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // lógica implementada pois quando muda de página utilizando o datatable os tooltips não são carregados: https://stackoverflow.com/a/34995105
+            $('#tabela').on('draw.dt', function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+
+            // Remove CSS Pagination
+            var elementPagination = document.getElementById("tabela_paginate");
+            if (elementPagination != null)
+                elementPagination.classList.remove("dataTables_paginate");
+
+            // SmartWizard initialize
+
+            $('#smartwizard').smartWizard({
+                enableURLhash: false,
+                anchorSettings: {
+                    anchorClickable: true, // Enable/Disable anchor navigation
+                    enableAllAnchors: true, // Activates all anchors clickable all times
+                },
+                lang: { // Language variables for button
+                    next: 'Próximo',
+                    previous: 'Anterior'
+                }
+            });
+            //btn sw-btn-next disabled
+            $("#smartwizard").on("leaveStep", function (e, anchorObject, currentStepIndex, nextStepIndex, stepDirection) {
+                if (anchorObject.prevObject.length == nextStepIndex + 1) {
+                    $('.btn-last-submit').removeClass('d-none');
+                } else {
+                    $('.btn-last-submit').addClass('d-none');
+                }
+            });
+
+            $(document).ajaxError(function (e, x, s, t) {
+                if (x.status == 401) {
+                    window.location.href = window.location.href.split('#')[0];
+                }
+                else
+                {
+                    displayMessage(`Um erro incomum ocorreu. <b>Status Code: ${x.status}</b>`, 'error')
+                }
+            });
+
+        });
+        function toggleEllipsis(it) {
+            var id = it.id;
+            var element = document.querySelector("#truncate-text-" + id);
+
+            element.classList.toggle("text-truncate");
+
+            if (!element.classList.contains("text-truncate")) {
+                $('#collapseListGroup' + id).collapse('show');
+            } else {
+                $('#collapseListGroup' + id).collapse('hide');
+            }
+        }
+    </script>
 </body>
 </html>
