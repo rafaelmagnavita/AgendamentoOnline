@@ -12,12 +12,8 @@ namespace AgendamentoOnline.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ScheduleContext _context;
+        private ScheduleContext _context = new ScheduleContext();
 
-        public HomeController(ScheduleContext context)
-        {
-            _context = context;
-        }
 
         public ActionResult Login()
         {

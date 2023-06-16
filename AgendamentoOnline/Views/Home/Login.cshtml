@@ -25,7 +25,7 @@
 
 
     <div class="text-center mb-4">
-        @using (Html.BeginForm("Login", "Homw", FormMethod.Post, new { @class = "form-signin" }))
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))
         {
             //cria a tag do formulário
             @Html.AntiForgeryToken() // previne o ataque CSRF
