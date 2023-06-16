@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using AgendamentoOnline.Utils.Enums;
 
 namespace AgendamentoOnline.Models
 {
-    public class PatientUser : Patient
+    public class Patient : User
     {
-        public override int Type { set => throw new NotImplementedException(); }
-    }
-    public abstract class Patient : User
-    {
-
         [Required(ErrorMessage = "An Health Insurance is required")]
 
         public int HealthInsurance { get; set; }
@@ -24,7 +21,5 @@ namespace AgendamentoOnline.Models
         public string FatherName { get; set; }
         [Required(ErrorMessage = "An Birth Date is required")]
         public DateTime Birth { get; set; }
-        public override int Type { get => Type = 2; }
-
     }
 }

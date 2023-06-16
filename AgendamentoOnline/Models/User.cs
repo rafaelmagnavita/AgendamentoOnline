@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.Remoting.Metadata;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
+using AgendamentoOnline.Utils.Enums;
+using System.Data.Entity.Infrastructure;
 
 namespace AgendamentoOnline.Models
 {
-    public abstract class User
+    public class AdminUser : User
+    {
+
+    }
+    public class Attendant : User
+    {
+    }
+    public class User
     {
         [Key]
         public int Id { get; set; }
@@ -27,10 +38,6 @@ namespace AgendamentoOnline.Models
         [Required(ErrorMessage = "An Password is required")]
 
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "An Type is required")]
-
-        public abstract int Type { get; set; }
 
     }
 }

@@ -137,6 +137,58 @@
     <Compile Include="Migrations\202306152044221_TabelasCorretas.designer.cs">
       <DependentUpon>202306152044221_TabelasCorretas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306161958305_correcaoAbstractToVirtual.cs" />
+    <Compile Include="Migrations\202306161958305_correcaoAbstractToVirtual.designer.cs">
+      <DependentUpon>202306161958305_correcaoAbstractToVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162006540_correcaoAbstractToVirtual2.cs" />
+    <Compile Include="Migrations\202306162006540_correcaoAbstractToVirtual2.designer.cs">
+      <DependentUpon>202306162006540_correcaoAbstractToVirtual2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162025264_correcaoAbstractToVirtual3.cs" />
+    <Compile Include="Migrations\202306162025264_correcaoAbstractToVirtual3.designer.cs">
+      <DependentUpon>202306162025264_correcaoAbstractToVirtual3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162033455_correcaoAbstractToVirtual4.cs" />
+    <Compile Include="Migrations\202306162033455_correcaoAbstractToVirtual4.designer.cs">
+      <DependentUpon>202306162033455_correcaoAbstractToVirtual4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162037394_correcaoAbstractToVirtual5.cs" />
+    <Compile Include="Migrations\202306162037394_correcaoAbstractToVirtual5.designer.cs">
+      <DependentUpon>202306162037394_correcaoAbstractToVirtual5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162103016_correcaoAbstractToVirtual6.cs" />
+    <Compile Include="Migrations\202306162103016_correcaoAbstractToVirtual6.designer.cs">
+      <DependentUpon>202306162103016_correcaoAbstractToVirtual6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162106524_correcaoAbstractToVirtual7.cs" />
+    <Compile Include="Migrations\202306162106524_correcaoAbstractToVirtual7.designer.cs">
+      <DependentUpon>202306162106524_correcaoAbstractToVirtual7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162110158_correcaoAbstractToVirtual8.cs" />
+    <Compile Include="Migrations\202306162110158_correcaoAbstractToVirtual8.designer.cs">
+      <DependentUpon>202306162110158_correcaoAbstractToVirtual8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162113529_correcaoAbstractToVirtual9.cs" />
+    <Compile Include="Migrations\202306162113529_correcaoAbstractToVirtual9.designer.cs">
+      <DependentUpon>202306162113529_correcaoAbstractToVirtual9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162121042_correcaoAbstractToVirtual10.cs" />
+    <Compile Include="Migrations\202306162121042_correcaoAbstractToVirtual10.designer.cs">
+      <DependentUpon>202306162121042_correcaoAbstractToVirtual10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162124041_correcaoAbstractToVirtual11.cs" />
+    <Compile Include="Migrations\202306162124041_correcaoAbstractToVirtual11.designer.cs">
+      <DependentUpon>202306162124041_correcaoAbstractToVirtual11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162127585_correcaoAbstractToVirtual12.cs" />
+    <Compile Include="Migrations\202306162127585_correcaoAbstractToVirtual12.designer.cs">
+      <DependentUpon>202306162127585_correcaoAbstractToVirtual12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306162133094_correcaoAbstractToVirtual13.cs" />
+    <Compile Include="Migrations\202306162133094_correcaoAbstractToVirtual13.designer.cs">
+      <DependentUpon>202306162133094_correcaoAbstractToVirtual13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ScheduleContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,6 +200,8 @@
     <Compile Include="Models\Patient.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Actions.cs" />
+    <Compile Include="Utils\Enums\Types.cs" />
     <Compile Include="Utils\LogManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -306,6 +360,45 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306152044221_TabelasCorretas.resx">
       <DependentUpon>202306152044221_TabelasCorretas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306161958305_correcaoAbstractToVirtual.resx">
+      <DependentUpon>202306161958305_correcaoAbstractToVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162006540_correcaoAbstractToVirtual2.resx">
+      <DependentUpon>202306162006540_correcaoAbstractToVirtual2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162025264_correcaoAbstractToVirtual3.resx">
+      <DependentUpon>202306162025264_correcaoAbstractToVirtual3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162033455_correcaoAbstractToVirtual4.resx">
+      <DependentUpon>202306162033455_correcaoAbstractToVirtual4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162037394_correcaoAbstractToVirtual5.resx">
+      <DependentUpon>202306162037394_correcaoAbstractToVirtual5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162103016_correcaoAbstractToVirtual6.resx">
+      <DependentUpon>202306162103016_correcaoAbstractToVirtual6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162106524_correcaoAbstractToVirtual7.resx">
+      <DependentUpon>202306162106524_correcaoAbstractToVirtual7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162110158_correcaoAbstractToVirtual8.resx">
+      <DependentUpon>202306162110158_correcaoAbstractToVirtual8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162113529_correcaoAbstractToVirtual9.resx">
+      <DependentUpon>202306162113529_correcaoAbstractToVirtual9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162121042_correcaoAbstractToVirtual10.resx">
+      <DependentUpon>202306162121042_correcaoAbstractToVirtual10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162124041_correcaoAbstractToVirtual11.resx">
+      <DependentUpon>202306162124041_correcaoAbstractToVirtual11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162127585_correcaoAbstractToVirtual12.resx">
+      <DependentUpon>202306162127585_correcaoAbstractToVirtual12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306162133094_correcaoAbstractToVirtual13.resx">
+      <DependentUpon>202306162133094_correcaoAbstractToVirtual13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
