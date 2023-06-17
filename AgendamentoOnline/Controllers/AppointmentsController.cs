@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using AgendamentoOnline;
 using AgendamentoOnline.Models;
 using AgendamentoOnline.Utils;
+using AgendamentoOnline.Utils.Enums;
 
 namespace AgendamentoOnline.Controllers
 {
@@ -67,43 +68,61 @@ namespace AgendamentoOnline.Controllers
         // GET: Appointments/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Appointment appointment = db.Apppointments.Find(id);
+                if (appointment == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(appointment);
             }
-            Appointment appointment = db.Apppointments.Find(id);
-            if (appointment == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                LogManager.LogErros("DetailsAppointment: " + ex.Message);
+                return RedirectToAction("Login", "Home");
             }
-            return View(appointment);
+
         }
 
         // GET: Appointments/Create
         public ActionResult Create()
         {
-            User loggedUser = Session["user"] as User;
-            List<Doctor> docList = new List<Doctor>();
-            List<Patient> patList = new List<Patient>();
+            try
+            {
+                User loggedUser = Session["user"] as User;
+                List<Doctor> docList = new List<Doctor>();
+                List<Patient> patList = new List<Patient>();
 
-            if (loggedUser is Doctor)
-            {
-                docList.Add(loggedUser as Doctor);
-                patList = db.Patients.ToList();
+                if (loggedUser is Doctor)
+                {
+                    docList.Add(loggedUser as Doctor);
+                    patList = db.Patients.ToList();
+                }
+                if (loggedUser is Patient)
+                {
+                    docList = db.Doctors.ToList();
+                    patList.Add(loggedUser as Patient);
+                }
+                else
+                {
+                    patList = db.Patients.ToList();
+                    docList = db.Doctors.ToList();
+                }
+                ViewBag.Doctors = docList.OrderBy(a => a.Name);
+                ViewBag.Patients = patList.OrderBy(a => a.Name);
+                return View();
             }
-            if (loggedUser is Patient)
+            catch (Exception ex)
             {
-                docList = db.Doctors.ToList();
-                patList.Add(loggedUser as Patient);
+                LogManager.LogErros("Get CreateAppointment: " + ex.Message);
+                return RedirectToAction("Login", "Home");
             }
-            else
-            {
-                patList = db.Patients.ToList();
-                docList = db.Doctors.ToList();
-            }
-            ViewBag.Doctors = docList.OrderBy(a => a.Name);
-            ViewBag.Patients = patList.OrderBy(a => a.Name);
-            return View();
+
         }
 
         // POST: Appointments/Create
@@ -111,28 +130,52 @@ namespace AgendamentoOnline.Controllers
         // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DoctorID,PatientID,Status,ReviewUser,UpdatedOn,CreatedOn,ScheduleTime,Motive")] Appointment appointment)
+        public ActionResult Create(Appointment appointment)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Apppointments.Add(appointment);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+
+                User user = Session["user"] as User;
+                appointment.CreatedOn = DateTime.Now;
+                appointment.ReviewUser = user.Id;
+                appointment.UpdatedOn = DateTime.Now;
+                appointment.Status = (int)AppointmentStatus.REQUESTED;
+                if (ModelState.IsValid)
+                {
+                    db.Apppointments.Add(appointment);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(appointment);
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("Post CreateAppointment: " + ex.Message);
+                return RedirectToAction("Login", "Home");
             }
 
-            return View(appointment);
         }
 
 
         // POST: Appointments/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Cancel")]
         [ValidateAntiForgeryToken]
         public ActionResult Cancel(int id)
         {
-            Appointment appointment = db.Apppointments.Find(id);
-            db.Apppointments.Remove(appointment);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                Appointment appointment = db.Apppointments.Find(id);
+                db.Apppointments.Remove(appointment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("CancelAppointment: " + ex.Message);
+                return RedirectToAction("Login", "Home");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

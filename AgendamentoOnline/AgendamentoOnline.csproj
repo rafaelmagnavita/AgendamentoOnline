@@ -189,6 +189,10 @@
     <Compile Include="Migrations\202306162133094_correcaoAbstractToVirtual13.designer.cs">
       <DependentUpon>202306162133094_correcaoAbstractToVirtual13.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306172055596_correcaoMud1.cs" />
+    <Compile Include="Migrations\202306172055596_correcaoMud1.Designer.cs">
+      <DependentUpon>202306172055596_correcaoMud1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DBContext\ScheduleContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -403,6 +407,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306162133094_correcaoAbstractToVirtual13.resx">
       <DependentUpon>202306162133094_correcaoAbstractToVirtual13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306172055596_correcaoMud1.resx">
+      <DependentUpon>202306172055596_correcaoMud1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
