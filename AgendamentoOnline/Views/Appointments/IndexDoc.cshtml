@@ -6,7 +6,7 @@
     ViewBag.Title = "Appointments";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Doctor doc = Session["user"] as Doctor;
-    List<Appointment> appointments = ViewBag.Appointment;
+    List<Appointment> appointments = Model.ToList();
     List<Appointment> appointmentsNotConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.REQUESTED)).ToList();
     List<Appointment> appointmentsConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.CONFIRMED) || a.Status.Equals((int)AppointmentStatus.RESCHEDULED)).ToList();
 }

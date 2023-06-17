@@ -82,6 +82,27 @@ namespace AgendamentoOnline.Controllers
         // GET: Appointments/Create
         public ActionResult Create()
         {
+            User loggedUser = Session["user"] as User;
+            List<Doctor> docList = new List<Doctor>();
+            List<Patient> patList = new List<Patient>();
+
+            if (loggedUser is Doctor)
+            {
+                docList.Add(loggedUser as Doctor);
+                patList = db.Patients.ToList();
+            }
+            if (loggedUser is Patient)
+            {
+                docList = db.Doctors.ToList();
+                patList.Add(loggedUser as Patient);
+            }
+            else
+            {
+                patList = db.Patients.ToList();
+                docList = db.Doctors.ToList();
+            }
+            ViewBag.Doctors = docList.OrderBy(a => a.Name);
+            ViewBag.Patients = patList.OrderBy(a => a.Name);
             return View();
         }
 

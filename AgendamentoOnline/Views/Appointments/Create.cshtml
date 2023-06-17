@@ -1,0 +1,72 @@
+﻿@model AgendamentoOnline.Models.Appointment
+
+@using AgendamentoOnline.Utils.Enums
+@using AgendamentoOnline.Models
+
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Appointment</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoctorID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DoctorID, ((IEnumerable<Patient>)ViewBag.Patients).Select(option => new SelectListItem
+                {
+                    Text = option.Name,
+                    Value = option.Id.ToString(),
+                    Selected = (Model != null) && (option.Id == Model.DoctorID)
+                }), "Selecione", new { @class = "form-control text-uppercase", @id = "PatientID" })
+                @Html.ValidationMessageFor(model => model.DoctorID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PatientID, ((IEnumerable<Patient>)ViewBag.Patients).Select(option => new SelectListItem
+                {
+                    Text = option.Name,
+                    Value = option.Id.ToString(),
+                    Selected = (Model != null) && (option.Id == Model.PatientID)
+                }), "Selecione", new { @class = "form-control text-uppercase", @id = "PatientID" })
+                @Html.ValidationMessageFor(model => model.PatientID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ScheduleTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ScheduleTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ScheduleTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

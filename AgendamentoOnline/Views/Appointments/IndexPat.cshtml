@@ -5,23 +5,20 @@
 @{
     ViewBag.Title = "Appointments";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Doctor doc = Session["user"] as Doctor;
-    List<Appointment> appointments = ViewBag.Appointment;
+    Patient pat = Session["user"] as Patient;
+    List<Appointment> appointments = Model.ToList();
+    Appointment lastAppointment = appointments.OrderByDescending(a => a.Id).FirstOrDefault();
     List<Appointment> appointmentsNotConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.REQUESTED)).ToList();
     List<Appointment> appointmentsConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.CONFIRMED) || a.Status.Equals((int)AppointmentStatus.RESCHEDULED)).ToList();
 }
 
-<h2>Welcome Doctor @doc.Name</h2>
+<h2>Welcome @pat.Name</h2>
 
-@if (appointmentsConfirmed.Count > 0)
+@if (lastAppointment.Status.Equals((int)AppointmentStatus.FINISHED) || lastAppointment.Status.Equals((int)AppointmentStatus.CANCELLED))
 {
-    <h3>There are @appointmentsConfirmed.Count appointments scheduled for you this week!</h3>
+    @Html.ActionLink("Create", "Create")
 }
 
-@if (appointmentsNotConfirmed.Count > 0)
-{
-    <h3>You also have @appointmentsNotConfirmed.Count appointments to confirm!</h3>
-}
 
 <div class="row">
     <div class="col sm-3">@Html.CheckBox("Everything", false, new { @id = "Everything" })</div>
