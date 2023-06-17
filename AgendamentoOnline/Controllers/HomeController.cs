@@ -43,7 +43,7 @@ namespace AgendamentoOnline.Controllers
                     if (userExists != null)
                     {
                         object loggedUser = Convert.ChangeType(userExists, userExists.GetType());
-                        Session["usuario"] = loggedUser;
+                        Session["user"] = loggedUser;
                         var ticket = FormsAuthentication.Encrypt(new FormsAuthenticationTicket(
                         1, userExists.Name, DateTime.Now, DateTime.Now.AddHours(12), true, userExists.Login.ToString()));
                         var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticket);
@@ -84,7 +84,7 @@ namespace AgendamentoOnline.Controllers
         {
             try
             {
-                User loggedUser = Session["usuario"] as User;
+                User loggedUser = Session["user"] as User;
                 switch (loggedUser.Type)
                 {
                     case (int)UserType.ATTENDANT:

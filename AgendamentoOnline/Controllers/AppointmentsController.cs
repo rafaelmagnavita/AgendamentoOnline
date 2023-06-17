@@ -19,8 +19,8 @@ namespace AgendamentoOnline.Controllers
         public ActionResult IndexDoc(int? Id)
         {
             List<Appointment> appointments = db.Apppointments.ToList();
-
-            return View(appointments.Where(a => a.DoctorID.Equals(Id)));
+            ViewBag.Appointments = appointments;
+            return View(appointments.Where(a => a.DoctorID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
         }
 
         public ActionResult IndexGeneral(int? Id)

@@ -343,9 +343,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Appointments\Create.cshtml" />
-    <Content Include="Views\Appointments\Delete.cshtml" />
+    <Content Include="Views\Appointments\Cancel.cshtml" />
     <Content Include="Views\Appointments\Details.cshtml" />
-    <Content Include="Views\Appointments\Edit.cshtml" />
+    <Content Include="Views\Appointments\_RescheduleModal.cshtml" />
     <Content Include="Views\Appointments\IndexDoc.cshtml" />
     <Content Include="Views\Appointments\IndexGeneral.cshtml" />
     <Content Include="Views\Appointments\IndexPat.cshtml" />
