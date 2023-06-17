@@ -58,6 +58,8 @@
 
     @foreach (var item in Model)
     {
+        @Html.AntiForgeryToken()
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ScheduleTime)
@@ -106,9 +108,11 @@
             }
             else
             {
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
-                </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id })|
+            @Html.ActionLink("Cancel", "Cancel", new { id = item.Id }) |
+            @Html.ActionLink("Reschedule", "Reschedule", new { id = item.Id })
+        </td>
             }
         </tr>
     }

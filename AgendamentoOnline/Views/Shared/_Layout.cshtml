@@ -6,50 +6,66 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Meu Aplicativo ASP.NET</title>
+    <title>@ViewBag.Title - MySchedule</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        body {
+            background-image: url("../img/bg.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                @if (userlayout != null)
-                {
-                    @Html.ActionLink("LogOut", "LogOut", "Home")
+    @if (userlayout != null)
+    {
+        <div class="card" style="background-color:snow;">
+            <div class="card-body">
+                <div class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="container">
+                        <div class="navbar-header">
 
-                    if (userlayout is Doctor)
-                    {
-                        <span class="icon-bar">
-                            @Html.ActionLink("MyClinicPlanneer", "IndexDoc", "Appointments", new { Id = userlayout.Id })
-                        </span>
+                            @Html.ActionLink("LogOut", "LogOut", "Home")
 
-                    }
-                    else if (userlayout is Patient)
-                    {
-                        <span class="icon-bar">
+                            @if (userlayout is Doctor)
+                            {
+                                <span class="icon-bar">
+                                    @Html.ActionLink("MyClinicPlanneer", "IndexDoc", "Appointments", new { Id = userlayout.Id })
+                                </span>
 
-                            @Html.ActionLink("MyClinicPlanneer", "IndexPat", "Appointments", new { Id = userlayout.Id })
-                        </span>
-                    }
-                    else
-                    {
-                        <span class="icon-bar">
+                            }
+                            else if (userlayout is Patient)
+                            {
+                                <span class="icon-bar">
 
-                            @Html.ActionLink("MyClinicPlanneer", "IndexGeneral", "Appointments")
-                        </span>
-                    }
-                }
+                                    @Html.ActionLink("MyClinicPlanneer", "IndexPat", "Appointments", new { Id = userlayout.Id })
+                                </span>
+                            }
+                            else
+                            {
+                                <span class="icon-bar">
 
+                                    @Html.ActionLink("MyClinicPlanneer", "IndexGeneral", "Appointments")
+                                </span>
+                            }
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
-        </footer>
+    }
+    <div class="card" id="cardBG">
+        <div class="card-body">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
+            </footer>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

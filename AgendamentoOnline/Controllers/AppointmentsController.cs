@@ -13,6 +13,7 @@ using AgendamentoOnline.Utils.Enums;
 
 namespace AgendamentoOnline.Controllers
 {
+    [Authorize]
     public class AppointmentsController : Controller
     {
         private ScheduleContext db = new ScheduleContext();
@@ -159,14 +160,50 @@ namespace AgendamentoOnline.Controllers
 
 
         // POST: Appointments/Delete/5
-        [HttpPost, ActionName("Cancel")]
-        [ValidateAntiForgeryToken]
         public ActionResult Cancel(int id)
         {
             try
             {
+                Appointment appointmentChanged = ChangeStatus(id, AppointmentStatus.CANCELLED);
+                db.Apppointments.Attach(appointmentChanged);
+                db.Entry(appointmentChanged).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("CancelAppointment: " + ex.Message);
+                return RedirectToAction("Login", "Home");
+            }
+
+        }
+
+        // POST: Appointments/Delete/5
+        public ActionResult Confirm(int id)
+        {
+            try
+            {
+                Appointment appointmentChanged;
                 Appointment appointment = db.Apppointments.Find(id);
-                db.Apppointments.Remove(appointment);
+                User userLogged = Session["User"] as User;
+                if (userLogged is Patient)
+                {
+                    appointment.PatConfirm = true;
+                }
+                else
+                {
+                    appointment.DocConfirm = true;
+                }
+                if (appointment.DocConfirm && appointment.PatConfirm)
+                {
+                    appointmentChanged = ChangeStatus(appointment, AppointmentStatus.CONFIRMED);
+                }
+                else
+                {
+                    appointmentChanged = ChangeStatus(appointment, appointment.Status);
+                }
+                db.Apppointments.Attach(appointmentChanged);
+                db.Entry(appointmentChanged).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -180,11 +217,79 @@ namespace AgendamentoOnline.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
+            try
             {
-                db.Dispose();
+                if (disposing)
+                {
+                    db.Dispose();
+                }
+                base.Dispose(disposing);
             }
-            base.Dispose(disposing);
+            catch (Exception ex)
+            {
+                LogManager.LogErros("DBDispose: " + ex.Message);
+                throw;
+            }
+
         }
+
+        #region Methods
+
+        public Appointment ChangeStatus(int id, AppointmentStatus status)
+        {
+            try
+            {
+                Appointment appointment = db.Apppointments.Find(id);
+                User user = Session["user"] as User;
+                appointment.Status = (int)status;
+                appointment.ReviewUser = user.Id;
+                appointment.UpdatedOn = DateTime.Now;
+                return appointment;
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("CancelAppointment: " + ex.Message);
+                return null;
+            }
+
+        }
+
+        public Appointment ChangeStatus(Appointment appointment, AppointmentStatus status)
+        {
+            try
+            {
+                User user = Session["user"] as User;
+                appointment.Status = (int)status;
+                appointment.ReviewUser = user.Id;
+                appointment.UpdatedOn = DateTime.Now;
+                return appointment;
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("CancelAppointment: " + ex.Message);
+                return null;
+            }
+
+        }
+
+        public Appointment ChangeStatus(Appointment appointment, int status)
+        {
+            try
+            {
+                User user = Session["user"] as User;
+                appointment.Status = status;
+                appointment.ReviewUser = user.Id;
+                appointment.UpdatedOn = DateTime.Now;
+                return appointment;
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("CancelAppointment: " + ex.Message);
+                return null;
+            }
+
+        }
+
+        #endregion
     }
 }

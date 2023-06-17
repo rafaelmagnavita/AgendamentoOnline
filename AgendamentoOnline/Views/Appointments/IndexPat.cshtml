@@ -59,6 +59,8 @@
 
     @foreach (var item in Model)
     {
+        @Html.AntiForgeryToken()
+
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ScheduleTime)
