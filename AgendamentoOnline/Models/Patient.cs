@@ -21,5 +21,8 @@ namespace AgendamentoOnline.Models
         public string FatherName { get; set; }
         [Required(ErrorMessage = "An Birth Date is required")]
         public DateTime Birth { get; set; }
+
+        [NotMapped]
+        public override int Type { get { return (int)UserType.PATIENT; } }
     }
 }

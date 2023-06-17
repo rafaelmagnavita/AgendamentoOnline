@@ -13,5 +13,8 @@ namespace AgendamentoOnline.Models
     {
         [Required(ErrorMessage = "An Album Title is required")]
         public int Specialization { get; set; }
+
+        [NotMapped]
+        public override int Type { get { return (int)UserType.DOCTOR; } }
     }
 }

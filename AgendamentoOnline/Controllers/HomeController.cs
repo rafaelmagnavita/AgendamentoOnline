@@ -12,10 +12,12 @@ namespace AgendamentoOnline.Controllers
 {
     public class HomeController : Controller
     {
+        #region constants
         private ScheduleContext _context = new ScheduleContext();
         private Actions actions = new Actions();
+        #endregion
 
-
+        #region controllers
         public ActionResult Login()
         {
             return View();
@@ -38,7 +40,8 @@ namespace AgendamentoOnline.Controllers
                         1, userExists.Name, DateTime.Now, DateTime.Now.AddHours(12), true, userExists.Login.ToString()));
                         var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticket);
                         Response.Cookies.Add(cookie);
-                        return RedirectToAction("Index", "Home");
+
+                        return FindIndex();
                     }
                 }
                 ModelState.AddModelError("", "Login ou Senha Incorretos");
@@ -67,26 +70,36 @@ namespace AgendamentoOnline.Controllers
             }
 
         }
-        [Authorize]
-        public ActionResult Index()
+        #endregion
+        #region methods
+        private ActionResult FindIndex()
         {
-            return View();
+            try
+            {
+                User loggedUser = Session["usuario"] as User;
+                switch (loggedUser.Type)
+                {
+                    case (int)UserType.ATTENDANT:
+                        return RedirectToAction("IndexAtt", "Schedule");
+                    case (int)UserType.DOCTOR:
+                        return RedirectToAction("IndexDoc", "Schedule");
+                    case (int)UserType.MASTER:
+                        return RedirectToAction("IndexAdm", "Schedule");
+                    case (int)UserType.PATIENT:
+                        return RedirectToAction("IndexPat", "Schedule");
+                    default:
+                        return RedirectToAction("Login", "Home");
+                }
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("IndexAtt", "Schedule");
+
+                throw;
+            }
+
+
         }
-        [Authorize]
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-        [Authorize]
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        #endregion
     }
 }

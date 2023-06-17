@@ -12,10 +12,13 @@ namespace AgendamentoOnline.Models
 {
     public class AdminUser : User
     {
-
+        [NotMapped]
+        public override int Type { get { return (int)UserType.MASTER; } }
     }
     public class Attendant : User
     {
+        [NotMapped]
+        public override int Type { get { return (int)UserType.ATTENDANT; } }
     }
     public class User
     {
@@ -38,6 +41,9 @@ namespace AgendamentoOnline.Models
         [Required(ErrorMessage = "An Password is required")]
 
         public string Password { get; set; }
+
+        [NotMapped]
+        public virtual int Type { get; set; }
 
     }
 }
