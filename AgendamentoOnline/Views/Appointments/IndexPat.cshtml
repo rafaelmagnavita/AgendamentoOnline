@@ -14,7 +14,7 @@
 
 <h2>Welcome @pat.Name</h2>
 
-@if (lastAppointment.Status.Equals((int)AppointmentStatus.FINISHED) || lastAppointment.Status.Equals((int)AppointmentStatus.CANCELLED))
+@if (((int)AppointmentStatus.FINISHED).Equals(lastAppointment?.Status) || ((int)AppointmentStatus.CANCELLED).Equals(lastAppointment?.Status))
 {
     @Html.ActionLink("Create", "Create")
 }

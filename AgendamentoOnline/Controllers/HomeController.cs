@@ -68,7 +68,7 @@ namespace AgendamentoOnline.Controllers
                 Session.Clear();
                 Session.Abandon();
                 FormsAuthentication.SignOut();
-                return RedirectToAction("Login", "Home");
+                return RedirectToAction("Login");
             }
             catch (Exception ex)
             {
