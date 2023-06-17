@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using AgendamentoOnline;
 using AgendamentoOnline.Models;
+using AgendamentoOnline.Utils;
 
 namespace AgendamentoOnline.Controllers
 {
@@ -18,23 +19,49 @@ namespace AgendamentoOnline.Controllers
         // GET: Appointments
         public ActionResult IndexDoc(int? Id)
         {
-            List<Appointment> appointments = db.Apppointments.ToList();
-            ViewBag.Appointments = appointments;
-            return View(appointments.Where(a => a.DoctorID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
+            try
+            {
+                List<Appointment> appointments = db.Apppointments.ToList();
+                return View(appointments.Where(a => a.DoctorID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("IndexDoc: " + ex.Message);
+                return RedirectToAction("Login", "Home");
+            }
+
         }
 
-        public ActionResult IndexGeneral(int? Id)
+        public ActionResult IndexGeneral()
         {
-            List<Appointment> appointments = db.Apppointments.ToList();
+            try
+            {
+                List<Appointment> appointments = db.Apppointments.OrderBy(a => a.ScheduleTime).ToList();
 
-            return View(appointments);
+                return View(appointments);
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("IndexGeneral: " + ex.Message);
+                return RedirectToAction("Login", "Home");
+            }
+
         }
 
         public ActionResult IndexPat(int? Id)
         {
-            List<Appointment> appointments = db.Apppointments.ToList();
+            try
+            {
+                List<Appointment> appointments = db.Apppointments.ToList();
 
-            return View(appointments.Where(a => a.PatientID.Equals(Id)));
+                return View(appointments.Where(a => a.PatientID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("IndexPat: " + ex.Message);
+                return RedirectToAction("Login", "Home");
+            }
+
         }
 
         // GET: Appointments/Details/5
@@ -75,56 +102,11 @@ namespace AgendamentoOnline.Controllers
             return View(appointment);
         }
 
-        // GET: Appointments/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Appointment appointment = db.Apppointments.Find(id);
-            if (appointment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(appointment);
-        }
-
-        // POST: Appointments/Edit/5
-        // Para se proteger de mais ataques, habilite as propriedades específicas às quais você quer se associar. Para 
-        // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DoctorID,PatientID,Status,ReviewUser,UpdatedOn,CreatedOn,ScheduleTime,Motive")] Appointment appointment)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(appointment).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(appointment);
-        }
-
-        // GET: Appointments/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Appointment appointment = db.Apppointments.Find(id);
-            if (appointment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(appointment);
-        }
 
         // POST: Appointments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Cancel(int id)
         {
             Appointment appointment = db.Apppointments.Find(id);
             db.Apppointments.Remove(appointment);

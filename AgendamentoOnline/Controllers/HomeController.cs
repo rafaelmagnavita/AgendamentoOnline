@@ -14,7 +14,6 @@ namespace AgendamentoOnline.Controllers
     {
         #region constants
         private ScheduleContext _context = new ScheduleContext();
-        private Actions actions = new Actions();
         #endregion
 
         #region controllers
@@ -88,11 +87,11 @@ namespace AgendamentoOnline.Controllers
                 switch (loggedUser.Type)
                 {
                     case (int)UserType.ATTENDANT:
-                        return RedirectToAction("IndexGeneral", "Appointments", new { Id = loggedUser.Id });
+                        return RedirectToAction("IndexGeneral", "Appointments");
                     case (int)UserType.DOCTOR:
                         return RedirectToAction("IndexDoc", "Appointments", new { Id = loggedUser.Id });
                     case (int)UserType.MASTER:
-                        return RedirectToAction("IndexGeneral", "Appointments", new { Id = loggedUser.Id });
+                        return RedirectToAction("IndexGeneral", "Appointments");
                     case (int)UserType.PATIENT:
                         return RedirectToAction("IndexPat", "Appointments", new { Id = loggedUser.Id });
                     default:

@@ -29,6 +29,12 @@
     <div class="col sm-3">@Html.CheckBox("Not Confirmed", false, new { @id = "NotConfirmed" })</div>
 </div>
 
+<div class="row">
+    <div class="col sm-3">@Html.CheckBox("Today", false, new { @id = "Everything" })</div>
+    <div class="col sm-3">@Html.CheckBox("This Week", true, new { @id = "ThisWeek" })</div>
+    <div class="col sm-3">@Html.CheckBox("Custom", false, new { @id = "Custom" })</div>
+</div>
+
 
 <table class="table">
     <tr>
@@ -76,30 +82,13 @@
                 @Html.DisplayFor(modelItem => item.PatConfirm)
             </td>
 
-            @if (item.Status.Equals((int)AppointmentStatus.CONFIRMED) || item.Status.Equals((int)AppointmentStatus.RESCHEDULED))
-            {
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id })
-                    @Html.ActionLink("Cancel", "Cancel", new { id = item.Id }) |
-                    @Html.ActionLink("Reschedule", "Reschedule", new { id = item.Id }) |
-                    @Html.ActionLink("Start", "Start", new { id = item.Id })|
-                    @Html.ActionLink("Finish", "Finish", new { id = item.Id })
-                </td>
-            }
-            else if (item.Status.Equals((int)AppointmentStatus.REQUESTED) && item.DocConfirm == false)
+            @if (item.Status.Equals((int)AppointmentStatus.REQUESTED) && item.PatConfirm == false)
             {
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                     @Html.ActionLink("Cancel", "Cancel", new { id = item.Id }) |
                     @Html.ActionLink("Reschedule", "Reschedule", new { id = item.Id }) |
                     @Html.ActionLink("Confirm", "Confirm", new { id = item.Id })
-                </td>
-            }
-            else if (item.Status.Equals((int)AppointmentStatus.STARTED))
-            {
-                <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Finish", "Finish", new { id = item.Id })
                 </td>
             }
             else
