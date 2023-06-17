@@ -20,7 +20,15 @@ namespace AgendamentoOnline.Controllers
         #region controllers
         public ActionResult Login()
         {
-            return View();
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("Erro em Login-Get: " + ex.Message);
+                throw;
+            }
         }
 
         [HttpPost]
@@ -80,22 +88,21 @@ namespace AgendamentoOnline.Controllers
                 switch (loggedUser.Type)
                 {
                     case (int)UserType.ATTENDANT:
-                        return RedirectToAction("IndexAtt", "Schedule");
+                        return RedirectToAction("IndexGeneral", "Appointments", new { Id = loggedUser.Id });
                     case (int)UserType.DOCTOR:
-                        return RedirectToAction("IndexDoc", "Schedule");
+                        return RedirectToAction("IndexDoc", "Appointments", new { Id = loggedUser.Id });
                     case (int)UserType.MASTER:
-                        return RedirectToAction("IndexAdm", "Schedule");
+                        return RedirectToAction("IndexGeneral", "Appointments", new { Id = loggedUser.Id });
                     case (int)UserType.PATIENT:
-                        return RedirectToAction("IndexPat", "Schedule");
+                        return RedirectToAction("IndexPat", "Appointments", new { Id = loggedUser.Id });
                     default:
                         return RedirectToAction("Login", "Home");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return RedirectToAction("IndexAtt", "Schedule");
-
-                throw;
+                LogManager.LogErros("FindIndex: " + ex.Message);
+                return RedirectToAction("Login", "Home");
             }
 
 

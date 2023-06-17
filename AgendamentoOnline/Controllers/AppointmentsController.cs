@@ -16,10 +16,25 @@ namespace AgendamentoOnline.Controllers
         private ScheduleContext db = new ScheduleContext();
 
         // GET: Appointments
-        public ActionResult Index()
+        public ActionResult IndexDoc(int? Id)
         {
+            List<Appointment> appointments = db.Apppointments.ToList();
 
-            return View(db.Apppointments.ToList());
+            return View(appointments.Where(a => a.DoctorID.Equals(Id)));
+        }
+
+        public ActionResult IndexGeneral(int? Id)
+        {
+            List<Appointment> appointments = db.Apppointments.ToList();
+
+            return View(appointments);
+        }
+
+        public ActionResult IndexPat(int? Id)
+        {
+            List<Appointment> appointments = db.Apppointments.ToList();
+
+            return View(appointments.Where(a => a.PatientID.Equals(Id)));
         }
 
         // GET: Appointments/Details/5
