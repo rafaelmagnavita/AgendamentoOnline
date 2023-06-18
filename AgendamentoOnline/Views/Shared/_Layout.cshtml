@@ -11,12 +11,12 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <style>
-        body {
-            background-image: url("../img/bg.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
+            body {
+                background-image: url("../img/Bg2.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+                  }
+        </style>
 </head>
 <body>
     @if (userlayout != null)
@@ -63,17 +63,20 @@
             @RenderBody()
         </div>
     </div>
-    <hr />
 
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <div class="ml-2">
-        <footer>
-            <p>&copy; @DateTime.Now.Year - MyClinicPlanner</p>
-        </footer>
-    </div>
+    @if (userlayout != null)
+    {
+        <hr />
+        <div class="ml-2">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - MyClinicPlanner</p>
+            </footer>
+        </div>
+    }
 </body>
 
 </html>

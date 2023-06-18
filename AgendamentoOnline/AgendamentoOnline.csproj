@@ -234,6 +234,10 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Img\Bg.png" />
+    <Content Include="Img\Bg2.jpg" />
+    <Content Include="Img\Logo_Black.png" />
+    <Content Include="Img\Logo_Transparente.png" />
+    <Content Include="Img\Logo_White.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
