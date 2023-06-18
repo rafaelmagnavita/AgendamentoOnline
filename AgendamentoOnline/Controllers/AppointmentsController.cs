@@ -13,6 +13,7 @@ using AgendamentoOnline.Utils.Enums;
 
 namespace AgendamentoOnline.Controllers
 {
+    [Filters.SessionExpiredCheck]
     [Authorize]
     public class AppointmentsController : Controller
     {

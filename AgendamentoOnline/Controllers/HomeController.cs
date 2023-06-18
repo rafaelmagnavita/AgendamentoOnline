@@ -21,6 +21,9 @@ namespace AgendamentoOnline.Controllers
         {
             try
             {
+                Session.Clear();
+                Session.Abandon();
+                FormsAuthentication.SignOut();
                 return View();
             }
             catch (Exception ex)

@@ -6,59 +6,61 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/all.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <title>@ViewBag.Title - MyClinicPlanner</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
     <style>
-            body {
-                background-image: url("../img/Bg2.jpg");
-                background-repeat: no-repeat;
-                background-size: cover;
-                  }
-        </style>
+        body {
+            background-image: url("../img/Bg2.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 <body>
     @if (userlayout != null)
     {
-        <div class="card" style="background-color:snow;">
-            <div class="card-body">
-                <div class="navbar navbar-inverse navbar-fixed-top">
-                    <div class="container">
-                        <div class="navbar-header">
+        <div class="navbar navbar-inverse navbar-fixed-top align-items-lg-start">
+            <div class="navbar-header">
 
-                            @Html.ActionLink("LogOut", "LogOut", "Home")
-
-                            @if (userlayout is Doctor)
-                            {
-                                <span class="icon-bar">
-                                    @Html.ActionLink("MyClinicPlanneer", "IndexDoc", "Appointments", new { Id = userlayout.Id })
-                                </span>
-
-                            }
-                            else if (userlayout is Patient)
-                            {
-                                <span class="icon-bar">
-
-                                    @Html.ActionLink("MyClinicPlanneer", "IndexPat", "Appointments", new { Id = userlayout.Id })
-                                </span>
-                            }
-                            else
-                            {
-                                <span class="icon-bar">
-
-                                    @Html.ActionLink("MyClinicPlanneer", "IndexGeneral", "Appointments")
-                                </span>
-                            }
-
-
-                        </div>
-                    </div>
-                </div>
+                @if (userlayout is Doctor)
+                {
+                    <a class="btn" href="@Url.Action("IndexDoc", "Appointments", new { Id = userlayout.Id })">
+                        <span class="icon-bar">
+                            <i class="fas fa-home" style="color: #ffffff;"></i>
+                        </span>
+                    </a>
+                }
+                else if (userlayout is Patient)
+                {
+                    <a class="btn" href="@Url.Action("IndexPat", "Appointments", new { Id = userlayout.Id })">
+                        <span class="icon-bar">
+                            <i class="fas fa-home" style="color: #ffffff;"></i>
+                        </span>
+                    </a>
+                }
+                else
+                {
+                    <a class="btn" href="@Url.Action("IndexGeneral", "Appointments")">
+                        <span class="icon-bar">
+                            <i class="fas fa-home" style="color: #ffffff;"></i>
+                        </span>
+                    </a>
+                }
+                <a class="btn" href="@Url.Action("LogOut", "Home")">
+                    <span class="icon-bar">
+                        <i class="fas fa-sign-out-alt" style="color: #ffffff;"></i>
+                    </span>
+                </a>
             </div>
         </div>
     }
-    <div class="card" id="cardBG">
+
+    <div class="row card m-4" id="cardBG">
         <div class="card-body">
             @RenderBody()
         </div>
@@ -71,7 +73,7 @@
     @if (userlayout != null)
     {
         <hr />
-        <div class="ml-2">
+        <div class="row ml-2 text-white">
             <footer>
                 <p>&copy; @DateTime.Now.Year - MyClinicPlanner</p>
             </footer>

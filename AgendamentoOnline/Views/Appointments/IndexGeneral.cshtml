@@ -16,6 +16,7 @@
 
 @if (appointmentsConfirmed.Count > 0)
 {
+
     <h3>There are @appointmentsConfirmed.Count appointments scheduled for this week!</h3>
 }
 
@@ -108,11 +109,11 @@
             }
             else
             {
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.Id })|
-            @Html.ActionLink("Cancel", "Cancel", new { id = item.Id }) |
-            @Html.ActionLink("Reschedule", "Reschedule", new { id = item.Id })
-        </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.Id })|
+                    @Html.ActionLink("Cancel", "Cancel", new { id = item.Id }) |
+                    @Html.ActionLink("Reschedule", "Reschedule", new { id = item.Id })
+                </td>
             }
         </tr>
     }

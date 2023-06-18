@@ -207,6 +207,7 @@
     <Compile Include="Utils\Actions.cs" />
     <Compile Include="Utils\Enums\AppointmentStatus.cs" />
     <Compile Include="Utils\Enums\Types.cs" />
+    <Compile Include="Utils\Filters.cs" />
     <Compile Include="Utils\LogManager.cs" />
   </ItemGroup>
   <ItemGroup>
