@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MySchedule</title>
+    <title>@ViewBag.Title - MyClinicPlanner</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -61,15 +61,19 @@
     <div class="card" id="cardBG">
         <div class="card-body">
             @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Meu Aplicativo ASP.NET</p>
-            </footer>
         </div>
     </div>
+    <hr />
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <div class="ml-2">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - MyClinicPlanner</p>
+        </footer>
+    </div>
 </body>
+
 </html>

@@ -14,9 +14,9 @@
 
 }
 
-<div class="container justify-content-center align-items-center" style="min-height: 100vh;">
-    <div class="text-center mt-5">
-        <div class="m-auto">
+<div class="container justify-content-center align-items-center" style="min-height:70vh; background-color: rgba(105, 105, 105, 0.4);">
+    <div class="text-center mt-5 align-items-center" style="position: absolute; top: 25%; left: 50%; transform: translate(-50%, -50%);">
+        <div class="mt-5">
             <h4>SEJA BEM VINDO!</h4>
             @*<div>
                     <img style="width: 50%; height: 50%;" src="~/Img/ECPNG.png" />
@@ -25,7 +25,7 @@
     </div>
 
 
-    <div class="text-center mb-4">
+    <div class="text-center mb-4 align-items-center mt-5" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "form-signin" }))
         {
             //cria a tag do formulário
