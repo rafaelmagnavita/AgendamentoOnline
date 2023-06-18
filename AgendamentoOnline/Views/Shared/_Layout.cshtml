@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/all.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
     <title>@ViewBag.Title - MyClinicPlanner</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -22,6 +25,7 @@
     </style>
 </head>
 <body>
+    @*NAVBAR*@
     @if (userlayout != null)
     {
         <div class="navbar navbar-inverse navbar-fixed-top align-items-lg-start">
@@ -59,6 +63,12 @@
             </div>
         </div>
     }
+    @* SIDEBAR *@
+    <div>
+        @Html.Partial("SideBar")
+    </div>
+
+    @* PAGE CONTENT *@
 
     <div class="row card m-4" id="cardBG">
         <div class="card-body">
@@ -70,6 +80,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+    @* FOOTER *@
+
     @if (userlayout != null)
     {
         <hr />
