@@ -17,7 +17,7 @@ namespace AgendamentoOnline.Utils
                 User user = (User)HttpContext.Current.Session["user"];
                 if (user == null)
                 {
-                    filterContext.Result = new RedirectResult("~/Usuarios/Login");
+                    filterContext.Result = new RedirectResult("~/Home/Login");
                     return;
                 }
                 base.OnActionExecuting(filterContext);

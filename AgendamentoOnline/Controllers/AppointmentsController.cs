@@ -20,6 +20,32 @@ namespace AgendamentoOnline.Controllers
         private ScheduleContext db = new ScheduleContext();
 
         // GET: Appointments
+
+        public ActionResult Index()
+        {
+            try
+            {
+                User userLogged = Session["user"] as User;
+                if (userLogged is Doctor)
+                {
+                    return RedirectToAction("IndexDoc", "Appointments", new { Id = userLogged.Id });
+                }
+                else if (userLogged is Patient)
+                {
+                    return RedirectToAction("IndexPat", "Appointments", new { Id = userLogged.Id });
+                }
+                else
+                {
+                    return RedirectToAction("IndexGeneral", "Appointments", null);
+                }
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("Index: " + ex.Message);
+                return RedirectToAction("Login", "Home");
+            }
+
+        }
         public ActionResult IndexDoc(int? Id)
         {
             try
