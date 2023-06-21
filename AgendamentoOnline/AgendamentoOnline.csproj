@@ -36,6 +36,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <LegacyPublishPropertiesPageEnabled>true</LegacyPublishPropertiesPageEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -192,6 +194,10 @@
     <Compile Include="Migrations\202306172055596_correcaoMud1.cs" />
     <Compile Include="Migrations\202306172055596_correcaoMud1.Designer.cs">
       <DependentUpon>202306172055596_correcaoMud1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306210219149_createdb.cs" />
+    <Compile Include="Migrations\202306210219149_createdb.Designer.cs">
+      <DependentUpon>202306210219149_createdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DBContext\ScheduleContext.cs" />
@@ -460,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306172055596_correcaoMud1.resx">
       <DependentUpon>202306172055596_correcaoMud1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306210219149_createdb.resx">
+      <DependentUpon>202306210219149_createdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

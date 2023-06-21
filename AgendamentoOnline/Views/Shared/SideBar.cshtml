@@ -5,9 +5,8 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper" style="background-color:rgba(105, 105, 105, 0.4);">
         <ul class="sidebar-nav">
-            <li> <a href="#">Dashboard</a> </li>
-            <li> <a href="#">Shortcuts</a> </li>
-            <li> <a href="#">Overview</a> </li>
+            <li> <a href="@Url.Action("Index", "Appointments")"> Home <i class="fas fa-home" style="color: #ffffff;"></i></a> </li>
+            <li> <a href="@Url.Action("LogOut", "Home")" class="logoutLink"> Log Out <i class="fas fa-sign-out-alt" style="color: #ffffff;"></i></a> </li>
         </ul>
     </div> <!-- /#sidebar-wrapper -->
 
@@ -85,6 +84,17 @@
 
         });
 
+        $('.logoutLink').click(function (e) {
+            e.preventDefault(); // Impede o comportamento padrão do link
+
+            var targetUrl = $(this).attr('href'); // Obtém o URL de destino do link
+
+            bootbox.confirm("Deseja fazer logout?", function (result) {
+                if (result) {
+                    window.location.href = targetUrl; // Redireciona para o URL de destino se confirmado
+                }
+            });
+        });
         //$(window).resize(function (e) {
         //    if ($(window).width() <= 768) {
         //        $("#wrapper").removeClass("toggled");

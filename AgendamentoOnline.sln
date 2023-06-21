@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendamentoOnline", "AgendamentoOnline\AgendamentoOnline.csproj", "{AC2620C1-2026-4DCF-B466-F92E3D4C2CEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgendamentoOnline.Tests", "AgendamentoOnline.Tests\AgendamentoOnline.Tests.csproj", "{6D308957-7D7C-406D-9A46-74F0953BCC1D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{AC2620C1-2026-4DCF-B466-F92E3D4C2CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC2620C1-2026-4DCF-B466-F92E3D4C2CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC2620C1-2026-4DCF-B466-F92E3D4C2CEF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D308957-7D7C-406D-9A46-74F0953BCC1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D308957-7D7C-406D-9A46-74F0953BCC1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D308957-7D7C-406D-9A46-74F0953BCC1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D308957-7D7C-406D-9A46-74F0953BCC1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
