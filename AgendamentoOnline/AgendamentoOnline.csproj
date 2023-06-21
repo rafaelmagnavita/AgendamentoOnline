@@ -245,6 +245,12 @@
     <Content Include="Img\Logo_Black.png" />
     <Content Include="Img\Logo_Transparente.png" />
     <Content Include="Img\Logo_White.png" />
+    <Content Include="Scripts\bootbox\bootbox.all.js" />
+    <Content Include="Scripts\bootbox\bootbox.all.min.js" />
+    <Content Include="Scripts\bootbox\bootbox.js" />
+    <Content Include="Scripts\bootbox\bootbox.locales.js" />
+    <Content Include="Scripts\bootbox\bootbox.locales.min.js" />
+    <Content Include="Scripts\bootbox\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

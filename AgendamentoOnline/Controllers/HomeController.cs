@@ -34,7 +34,6 @@ namespace AgendamentoOnline.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Login(User user)
         {
             try
