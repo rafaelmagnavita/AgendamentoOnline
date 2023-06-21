@@ -123,6 +123,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AppointmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Migrations\202306152024512_InitialCreate.cs" />
     <Compile Include="Migrations\202306152024512_InitialCreate.designer.cs">
       <DependentUpon>202306152024512_InitialCreate.cs</DependentUpon>
@@ -215,6 +216,7 @@
     <Compile Include="Utils\Enums\Types.cs" />
     <Compile Include="Utils\Filters.cs" />
     <Compile Include="Utils\LogManager.cs" />
+    <Compile Include="Utils\Security.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\all.css" />
@@ -414,6 +416,7 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Shared\SideBar.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
