@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendamentoOnline.Models.Appointment>
+﻿@model IEnumerable<AgendamentoOnline.Models.User>
 @using AgendamentoOnline.Models;
 @using AgendamentoOnline.Utils.Enums;
 
@@ -11,15 +11,31 @@
     <thead>
         <tr>
             <th>
-
+                Name
+            </th>
+            <th>
+                Login
+            </th>
+            <th>
+                Type
             </th>
         </tr>
     </thead>
     <tbody>
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Login
+            </td>
+            <td>
+                @item.Type
             </td>
         </tr>
+        }
     </tbody>
 </table>
 <script>

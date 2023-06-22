@@ -1,0 +1,56 @@
+﻿@model IEnumerable<AgendamentoOnline.Models.User>
+@using AgendamentoOnline.Models;
+@using AgendamentoOnline.Utils.Enums;
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                <a href='@Url.Action("CreateUser", "User")' title="New User">
+                    <span class="fa fa-edit" style="font-size:15px" ;></span>
+                </a>
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Login
+            </th>
+            <th>
+                Type
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @*<a href='@Url.Action("Edit", "Colaborador", new { id = item.Id })' title="Editar Solicitação">
+                            <span class="fa fa-edit" style="font-size:15px" ;></span>
+                        </a>*@
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Login
+                </td>
+                <td>
+                    @item.Type
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    //$("#cardBG").toggleClass("card");
+    //$("#bodyCard").toggleClass("card-body");
+
+</script>

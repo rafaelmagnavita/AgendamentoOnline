@@ -1,5 +1,6 @@
 ﻿using AgendamentoOnline.Models;
 using AgendamentoOnline.Utils;
+using AgendamentoOnline;
 using AgendamentoOnline.Utils.Enums;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Data.Entity;
 
 namespace AgendamentoOnline.Controllers
 {
@@ -24,6 +26,7 @@ namespace AgendamentoOnline.Controllers
                 Session.Clear();
                 Session.Abandon();
                 FormsAuthentication.SignOut();
+
                 return View();
             }
             catch (Exception ex)
@@ -38,19 +41,23 @@ namespace AgendamentoOnline.Controllers
         {
             try
             {
-                var userExists = _context.Users.Where(a => a.Login == user.Login).FirstOrDefault();
-                if (userExists != null && user.Password.Equals(userExists?.Password))
-                {
-                    if (userExists != null)
-                    {
-                        object loggedUser = Convert.ChangeType(userExists, userExists.GetType());
-                        Session["user"] = loggedUser;
-                        var ticket = FormsAuthentication.Encrypt(new FormsAuthenticationTicket(
-                        1, userExists.Name, DateTime.Now, DateTime.Now.AddHours(12), true, userExists.Login.ToString()));
-                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticket);
-                        Response.Cookies.Add(cookie);
 
-                        return FindIndex();
+                var userExists = _context.Users.Where(a => a.Login == user.Login).FirstOrDefault();
+                if (userExists != null)
+                {
+                    if ((Security.PasswordEncryption.EncryptPassword(user.Password)).Equals(userExists?.Password))
+                    {
+                        if (userExists != null)
+                        {
+                            object loggedUser = Convert.ChangeType(userExists, userExists.GetType());
+                            Session["user"] = loggedUser;
+                            var ticket = FormsAuthentication.Encrypt(new FormsAuthenticationTicket(
+                            1, userExists.Name, DateTime.Now, DateTime.Now.AddHours(12), true, userExists.Login.ToString()));
+                            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, ticket);
+                            Response.Cookies.Add(cookie);
+
+                            return FindIndex();
+                        }
                     }
                 }
                 ModelState.AddModelError("", "Login ou Senha Incorretos");
