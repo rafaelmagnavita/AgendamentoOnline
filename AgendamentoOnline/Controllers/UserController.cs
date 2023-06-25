@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AgendamentoOnline.Models;
 using AgendamentoOnline.Utils;
 using AgendamentoOnline.Utils.Enums;
+using AutoMapper;
 
 namespace AgendamentoOnline.Controllers
 {
@@ -42,13 +43,14 @@ namespace AgendamentoOnline.Controllers
             }
         }
         [Filters.NOTPATFILTER]
-        public ActionResult ManagePatients(List<User> listUser = null)
+        public ActionResult ManagePatients()
         {
             try
             {
-                listUser = _context.Users.OrderBy(a => a.Name).ToList();
+                var listUser = _context.Users.OrderBy(a => a.Name).ToList();
                 listUser = listUser.Where(a => a.Type == (int)UserType.PATIENT).ToList();
-                return View(listUser);
+                Mapper.Map
+                return View();
             }
             catch (Exception ex)
             {

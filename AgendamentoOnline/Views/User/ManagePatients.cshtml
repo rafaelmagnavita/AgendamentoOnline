@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendamentoOnline.Models.User>
+﻿@model IEnumerable<AgendamentoOnline.Models.Patient>
 @using AgendamentoOnline.Models;
 @using AgendamentoOnline.Utils.Enums;
 
@@ -22,7 +22,7 @@
                 Login
             </th>
             <th>
-                Type
+                Age
             </th>
         </tr>
     </thead>
@@ -39,7 +39,7 @@
                 @item.Login
             </td>
             <td>
-                @item.Type
+                @item.Age
             </td>
         </tr>
         }

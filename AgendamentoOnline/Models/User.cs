@@ -40,5 +40,8 @@ namespace AgendamentoOnline.Models
 
         [NotMapped]
         public virtual int Type { get; set; }
+
+        [NotMapped]
+        public string TypeName { get { if (Type == 0) return null; else return Utils.Actions.GetDescription((UserType)Type); } }
     }
 }
