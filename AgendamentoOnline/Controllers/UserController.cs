@@ -83,17 +83,16 @@ namespace AgendamentoOnline.Controllers
                 {
                     case (int)UserType.ATTENDANT:
                         user = new Attendant();
-                        break;
+                        return View("NewAtt", user);
                     case (int)UserType.DOCTOR:
                         user = new Doctor();
-                        break;
+                        return View("NewDoc", user);
                     case (int)UserType.PATIENT:
                         user = new Patient();
-                        break;
+                        return View("NewPat", user);
                     default:
                         return RedirectToAction("Index");
                 }
-                return View(user);
             }
             catch (Exception ex)
             {
@@ -103,46 +102,72 @@ namespace AgendamentoOnline.Controllers
         }
         [Filters.NOTPATFILTER]
         [HttpPost]
-        public ActionResult Create(object user)
+        public ActionResult NewDoc(Doctor doc)
         {
             try
             {
-                int typeUser = ((User)user).Type;
-                switch (typeUser)
+                doc.Login = doc.Identification;
+                doc.Password = Security.PasswordEncryption.EncryptPassword(doc.Identification.Substring(doc.Identification.Length - 3));
+                if (ModelState.IsValid)
                 {
-                    case (int)UserType.ATTENDANT:
-                        Attendant att = user as Attendant;
-                        if (ModelState.IsValid)
-                        {
-                            _context.Users.Add(att);
-                            _context.SaveChanges();
-                        }
-                        break;
-                    case (int)UserType.DOCTOR:
-                        Doctor doc = user as Doctor;
-                        if (ModelState.IsValid)
-                        {
-                            _context.Users.Add(doc);
-                            _context.SaveChanges();
-                        }
-                        break;
-                    case (int)UserType.PATIENT:
-                        Patient pat = user as Patient;
-                        if (ModelState.IsValid)
-                        {
-                            _context.Users.Add(pat);
-                            _context.SaveChanges();
-                        }
-                        break;
-                    default:
-                        return RedirectToAction("Index");
+                    _context.Users.Add(doc);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
                 }
 
-                return RedirectToAction("Index");
+                return View();
             }
             catch (Exception ex)
             {
-                LogManager.LogErros("Erro em Create-Post-Users: " + ex.Message);
+                LogManager.LogErros("Erro em NewDoc-Post-Users: " + ex.Message);
+                throw;
+            }
+        }
+
+        [Filters.NOTPATFILTER]
+        [HttpPost]
+        public ActionResult NewPat(Patient pat)
+        {
+            try
+            {
+                pat.Login = pat.Identification;
+                pat.Password = Security.PasswordEncryption.EncryptPassword(pat.Identification.Substring(pat.Identification.Length - 3));
+                if (ModelState.IsValid)
+                {
+                    _context.Users.Add(pat);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("Erro em NewPat-Post-Users: " + ex.Message);
+                throw;
+            }
+        }
+
+        [Filters.NOTPATFILTER]
+        [HttpPost]
+        public ActionResult NewAtt(Attendant att)
+        {
+            try
+            {
+                att.Login = att.Identification;
+                att.Password = Security.PasswordEncryption.EncryptPassword(att.Identification.Substring(att.Identification.Length - 3));
+                if (ModelState.IsValid)
+                {
+                    _context.Users.Add(att);
+                    _context.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View();
+            }
+            catch (Exception ex)
+            {
+                LogManager.LogErros("Erro em NewAtt-Post-Users: " + ex.Message);
                 throw;
             }
         }

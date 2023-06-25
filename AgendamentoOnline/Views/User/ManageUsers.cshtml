@@ -11,8 +11,14 @@
     <thead>
         <tr>
             <th>
-                <a href='@Url.Action("CreateUser", "User")' title="New User">
-                    <span class="fa fa-edit" style="font-size:15px" ;></span>
+                <a href='@Url.Action("Create", "User", new { Type = (int)UserType.ATTENDANT })' title="New Attendant">
+                    <span class="fas fa-laptop" style="font-size:15px" ;></span>
+                </a>
+                <a href='@Url.Action("Create", "User", new { Type = (int)UserType.DOCTOR })' title="New Doctor">
+                    <span class="fas fa-user-md" style="font-size:15px" ;></span>
+                </a>
+                <a href='@Url.Action("Create", "User", new { Type = (int)UserType.PATIENT })' title="New Patient">
+                    <span class="fas fa-hospital-user" style="font-size:15px" ;></span>
                 </a>
             </th>
             <th>

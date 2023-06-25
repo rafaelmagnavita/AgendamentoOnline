@@ -34,16 +34,11 @@ namespace AgendamentoOnline.Models
 
         public string Identification { get; set; }
 
-        [Required(ErrorMessage = "An Login is required")]
-
         public string Login { get; set; }
-
-        [Required(ErrorMessage = "An Password is required")]
 
         public string Password { get; set; }
 
         [NotMapped]
         public virtual int Type { get; set; }
-
     }
 }

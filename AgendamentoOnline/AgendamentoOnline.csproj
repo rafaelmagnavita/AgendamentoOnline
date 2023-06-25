@@ -200,6 +200,10 @@
     <Compile Include="Migrations\202306210219149_createdb.Designer.cs">
       <DependentUpon>202306210219149_createdb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306250106098_loginConfig.cs" />
+    <Compile Include="Migrations\202306250106098_loginConfig.Designer.cs">
+      <DependentUpon>202306250106098_loginConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="DBContext\ScheduleContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -418,7 +422,9 @@
     <Content Include="Views\Shared\SideBar.cshtml" />
     <Content Include="Views\User\ManagePatients.cshtml" />
     <Content Include="Views\User\ManageUsers.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\NewAtt.cshtml" />
+    <Content Include="Views\User\NewDoc.cshtml" />
+    <Content Include="Views\User\NewPat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -480,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306210219149_createdb.resx">
       <DependentUpon>202306210219149_createdb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306250106098_loginConfig.resx">
+      <DependentUpon>202306250106098_loginConfig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
