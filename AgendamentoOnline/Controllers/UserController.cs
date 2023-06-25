@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using AgendamentoOnline.Models;
 using AgendamentoOnline.Utils;
 using AgendamentoOnline.Utils.Enums;
-using AutoMapper;
+//using AutoMapper;
 
 namespace AgendamentoOnline.Controllers
 {
@@ -49,7 +49,6 @@ namespace AgendamentoOnline.Controllers
             {
                 var listUser = _context.Users.OrderBy(a => a.Name).ToList();
                 listUser = listUser.Where(a => a.Type == (int)UserType.PATIENT).ToList();
-                Mapper.Map
                 return View();
             }
             catch (Exception ex)
