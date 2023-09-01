@@ -20,10 +20,10 @@ namespace AgendamentoOnline
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<Appointment> Apppointments { get; set; }
-        public DbSet<Dates> Dates { get; set; }
         public DbSet<Coach> Coachs { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Class> Classes { get; set; }
+        public DbSet<Plan> Plans { get; set; }
 
         public ScheduleContext() : base("DbConnectionString")
         {

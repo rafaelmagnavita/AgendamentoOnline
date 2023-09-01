@@ -17,4 +17,16 @@ namespace AgendamentoOnline.Utils.Enums
         [Description("Master")]
         MASTER = 4
     }
+
+    public enum PlanType
+    {
+        [Description("Health")]
+        Health = 1,
+        [Description("Strong")]
+        Strong = 2,
+        [Description("Cardio")]
+        Cardio = 3,
+        [Description("All")]
+        All = 4
+    }
 }
