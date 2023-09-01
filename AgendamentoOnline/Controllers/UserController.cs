@@ -28,7 +28,7 @@ namespace AgendamentoOnline.Controllers
 
                 if (!(user is AdminUser))
                 {
-                    return RedirectToAction("ManagePatients", "User");
+                    return RedirectToAction("ManageClients", "User");
                 }
                 else
                 {
@@ -43,17 +43,17 @@ namespace AgendamentoOnline.Controllers
             }
         }
         [Filters.NOTPATFILTER]
-        public ActionResult ManagePatients()
+        public ActionResult ManageClients()
         {
             try
             {
                 var listUser = _context.Users.OrderBy(a => a.Name).ToList();
-                listUser = listUser.Where(a => a.Type == (int)UserType.PATIENT).ToList();
+                listUser = listUser.Where(a => a.Type == (int)UserType.Client).ToList();
                 return View();
             }
             catch (Exception ex)
             {
-                LogManager.LogErros("Erro em ManagePatients-Users: " + ex.Message);
+                LogManager.LogErros("Erro em ManageClients-Users: " + ex.Message);
                 throw;
             }
         }
@@ -85,12 +85,12 @@ namespace AgendamentoOnline.Controllers
                     case (int)UserType.ATTENDANT:
                         user = new Attendant();
                         return View("NewAtt", user);
-                    case (int)UserType.DOCTOR:
-                        user = new Doctor();
-                        return View("NewDoc", user);
-                    case (int)UserType.PATIENT:
-                        user = new Patient();
-                        return View("NewPat", user);
+                    case (int)UserType.Coach:
+                        user = new Coach();
+                        return View("NewCoach", user);
+                    case (int)UserType.Client:
+                        user = new Client();
+                        return View("NewClient", user);
                     default:
                         return RedirectToAction("Index");
                 }
@@ -103,7 +103,7 @@ namespace AgendamentoOnline.Controllers
         }
         [Filters.NOTPATFILTER]
         [HttpPost]
-        public ActionResult NewDoc(Doctor doc)
+        public ActionResult NewCoach(Coach doc)
         {
             try
             {
@@ -120,14 +120,14 @@ namespace AgendamentoOnline.Controllers
             }
             catch (Exception ex)
             {
-                LogManager.LogErros("Erro em NewDoc-Post-Users: " + ex.Message);
+                LogManager.LogErros("Erro em NewCoach-Post-Users: " + ex.Message);
                 throw;
             }
         }
 
         [Filters.NOTPATFILTER]
         [HttpPost]
-        public ActionResult NewPat(Patient pat)
+        public ActionResult NewClient(Client pat)
         {
             try
             {
@@ -144,7 +144,7 @@ namespace AgendamentoOnline.Controllers
             }
             catch (Exception ex)
             {
-                LogManager.LogErros("Erro em NewPat-Post-Users: " + ex.Message);
+                LogManager.LogErros("Erro em NewClient-Post-Users: " + ex.Message);
                 throw;
             }
         }

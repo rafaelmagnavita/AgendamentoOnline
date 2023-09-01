@@ -18,21 +18,21 @@ namespace AgendamentoOnline.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "An Doctor Name is required")]
-        [DisplayName("Doctor")]
+        [Required(ErrorMessage = "An Coach Name is required")]
+        [DisplayName("Coach")]
 
-        public int DoctorID { get; set; }
+        public int CoachID { get; set; }
 
-        public int PatientID { get; set; }
+        public int ClientID { get; set; }
 
         public bool DocConfirm { get; set; }
         public bool PatConfirm { get; set; }
 
 
         [NotMapped]
-        public Patient Patient { get { return _context.Patients.Find(PatientID); } }
+        public Client Client { get { return _context.Clients.Find(ClientID); } }
         [NotMapped]
-        public Doctor Doctor { get { return _context.Doctors.Find(DoctorID); } }
+        public Coach Coach { get { return _context.Coachs.Find(CoachID); } }
         public int Status { get; set; }
 
         [NotMapped]

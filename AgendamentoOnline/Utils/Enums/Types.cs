@@ -8,10 +8,10 @@ namespace AgendamentoOnline.Utils.Enums
 {
     public enum UserType
     {
-        [Description("Doctor")]
-        DOCTOR = 1,
-        [Description("Patient")]
-        PATIENT = 2,
+        [Description("Coach")]
+        Coach = 1,
+        [Description("Client")]
+        Client = 2,
         [Description("Attendant")]
         ATTENDANT = 3,
         [Description("Master")]

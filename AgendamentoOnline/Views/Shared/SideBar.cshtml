@@ -6,7 +6,7 @@
     <div id="sidebar-wrapper" style="background-color:rgba(105, 105, 105, 0.4);">
         <ul class="sidebar-nav">
             <li> <a href="@Url.Action("Index", "Appointments")"> Home <i class="fas fa-home" style="color: #ffffff;"></i></a> </li>
-            @if (!(userlayout is Patient))
+            @if (!(userlayout is Client))
             {
                 <li> <a href="@Url.Action("Index", "User")"> Registry <i class="fas fa-address-card"></i></a> </li>
             }

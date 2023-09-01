@@ -16,13 +16,13 @@ namespace AgendamentoOnline.Utils.Enums
         FINISHED = 3,
         [Description("Cancelled")]
         CANCELLED = 4,
-        [Description("Patient Missed")]
+        [Description("Client Missed")]
         PATMISSED = 5,
         [Description("Rescheduled")]
         RESCHEDULED = 6,
         [Description("Started")]
         STARTED = 7,
-        [Description("Doctor Missed")]
+        [Description("Coach Missed")]
         DOCMISSED = 8
     }
 }

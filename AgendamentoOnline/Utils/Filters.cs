@@ -42,7 +42,7 @@ namespace AgendamentoOnline.Utils
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
                 User user = (User)HttpContext.Current.Session["user"];
-                if (!(user is Doctor))
+                if (!(user is Coach))
                 {
                     filterContext.Result = new RedirectResult("~/Home/Login");
                     return;
@@ -70,7 +70,7 @@ namespace AgendamentoOnline.Utils
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
                 User user = (User)HttpContext.Current.Session["user"];
-                if (!(user is Patient))
+                if (!(user is Client))
                 {
                     filterContext.Result = new RedirectResult("~/Home/Login");
                     return;
@@ -84,7 +84,7 @@ namespace AgendamentoOnline.Utils
             public override void OnActionExecuting(ActionExecutingContext filterContext)
             {
                 User user = (User)HttpContext.Current.Session["user"];
-                if (user is Patient)
+                if (user is Client)
                 {
                     filterContext.Result = new RedirectResult("~/Home/Login");
                     return;

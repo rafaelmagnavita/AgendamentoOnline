@@ -97,11 +97,11 @@ namespace AgendamentoOnline.Controllers
                 {
                     case (int)UserType.ATTENDANT:
                         return RedirectToAction("IndexGeneral", "Appointments");
-                    case (int)UserType.DOCTOR:
+                    case (int)UserType.Coach:
                         return RedirectToAction("IndexDoc", "Appointments", new { Id = loggedUser.Id });
                     case (int)UserType.MASTER:
                         return RedirectToAction("IndexGeneral", "Appointments");
-                    case (int)UserType.PATIENT:
+                    case (int)UserType.Client:
                         return RedirectToAction("IndexPat", "Appointments", new { Id = loggedUser.Id });
                     default:
                         return RedirectToAction("Login", "Home");

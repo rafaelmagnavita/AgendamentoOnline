@@ -26,11 +26,11 @@ namespace AgendamentoOnline.Controllers
             try
             {
                 User userLogged = Session["user"] as User;
-                if (userLogged is Doctor)
+                if (userLogged is Coach)
                 {
                     return RedirectToAction("IndexDoc", "Appointments", new { Id = userLogged.Id });
                 }
-                else if (userLogged is Patient)
+                else if (userLogged is Client)
                 {
                     return RedirectToAction("IndexPat", "Appointments", new { Id = userLogged.Id });
                 }
@@ -51,7 +51,7 @@ namespace AgendamentoOnline.Controllers
             try
             {
                 List<Appointment> appointments = db.Apppointments.ToList();
-                return View(appointments.Where(a => a.DoctorID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
+                return View(appointments.Where(a => a.CoachID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
             }
             catch (Exception ex)
             {
@@ -83,7 +83,7 @@ namespace AgendamentoOnline.Controllers
             {
                 List<Appointment> appointments = db.Apppointments.ToList();
 
-                return View(appointments.Where(a => a.PatientID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
+                return View(appointments.Where(a => a.ClientID.Equals(Id)).OrderBy(a => a.ScheduleTime).ToList());
             }
             catch (Exception ex)
             {
@@ -123,26 +123,26 @@ namespace AgendamentoOnline.Controllers
             try
             {
                 User loggedUser = Session["user"] as User;
-                List<Doctor> docList = new List<Doctor>();
-                List<Patient> patList = new List<Patient>();
+                List<Coach> docList = new List<Coach>();
+                List<Client> patList = new List<Client>();
 
-                if (loggedUser is Doctor)
+                if (loggedUser is Coach)
                 {
-                    docList.Add(loggedUser as Doctor);
-                    patList = db.Patients.ToList();
+                    docList.Add(loggedUser as Coach);
+                    patList = db.Clients.ToList();
                 }
-                if (loggedUser is Patient)
+                if (loggedUser is Client)
                 {
-                    docList = db.Doctors.ToList();
-                    patList.Add(loggedUser as Patient);
+                    docList = db.Coachs.ToList();
+                    patList.Add(loggedUser as Client);
                 }
                 else
                 {
-                    patList = db.Patients.ToList();
-                    docList = db.Doctors.ToList();
+                    patList = db.Clients.ToList();
+                    docList = db.Coachs.ToList();
                 }
-                ViewBag.Doctors = docList.OrderBy(a => a.Name);
-                ViewBag.Patients = patList.OrderBy(a => a.Name);
+                ViewBag.Coachs = docList.OrderBy(a => a.Name);
+                ViewBag.Clients = patList.OrderBy(a => a.Name);
                 return View();
             }
             catch (Exception ex)
@@ -213,7 +213,7 @@ namespace AgendamentoOnline.Controllers
                 Appointment appointmentChanged;
                 Appointment appointment = db.Apppointments.Find(id);
                 User userLogged = Session["User"] as User;
-                if (userLogged is Patient)
+                if (userLogged is Client)
                 {
                     appointment.PatConfirm = true;
                 }

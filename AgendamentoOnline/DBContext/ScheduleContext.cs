@@ -12,8 +12,8 @@ namespace AgendamentoOnline
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .Map<Patient>(m => m.Requires("Discriminator").HasValue((int)UserType.PATIENT))
-                .Map<Doctor>(m => m.Requires("Discriminator").HasValue((int)UserType.DOCTOR))
+                .Map<Client>(m => m.Requires("Discriminator").HasValue((int)UserType.Client))
+                .Map<Coach>(m => m.Requires("Discriminator").HasValue((int)UserType.Coach))
                 .Map<AdminUser>(m => m.Requires("Discriminator").HasValue((int)UserType.MASTER))
                 .Map<Attendant>(m => m.Requires("Discriminator").HasValue((int)UserType.ATTENDANT));
 
@@ -22,8 +22,8 @@ namespace AgendamentoOnline
         public DbSet<User> Users { get; set; }
         public DbSet<Appointment> Apppointments { get; set; }
         public DbSet<Dates> Dates { get; set; }
-        public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Coach> Coachs { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         public ScheduleContext() : base("DbConnectionString")
         {

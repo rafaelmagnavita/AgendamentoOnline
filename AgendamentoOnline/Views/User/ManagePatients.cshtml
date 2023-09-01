@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AgendamentoOnline.Models.Patient>
+﻿@model IEnumerable<AgendamentoOnline.Models.Client>
 @using AgendamentoOnline.Models;
 @using AgendamentoOnline.Utils.Enums;
 
@@ -11,7 +11,7 @@
     <thead>
         <tr>
             <th>
-                <a href='@Url.Action("Create", "User", new { Type = (int)UserType.PATIENT })' title="New Patient">
+                <a href='@Url.Action("Create", "User", new { Type = (int)UserType.Client })' title="New Client">
                     <span class="fas fa-hospital-user" style="font-size:15px" ;></span>
                 </a>
             </th>

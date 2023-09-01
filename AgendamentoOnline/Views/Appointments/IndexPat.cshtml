@@ -5,7 +5,7 @@
 @{
     ViewBag.Title = "Appointments";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Patient pat = Session["user"] as Patient;
+    Client pat = Session["user"] as Client;
     List<Appointment> appointments = Model.ToList();
     Appointment lastAppointment = appointments.OrderByDescending(a => a.Id).FirstOrDefault();
     List<Appointment> appointmentsNotConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.REQUESTED)).ToList();
@@ -39,7 +39,7 @@
             @Html.DisplayNameFor(model => model.ScheduleTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Patient.Name)
+            @Html.DisplayNameFor(model => model.Client.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -66,7 +66,7 @@
                 @Html.DisplayFor(modelItem => item.ScheduleTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Patient.Name)
+                @Html.DisplayFor(modelItem => item.Client.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StatusName)

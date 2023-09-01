@@ -12,8 +12,8 @@
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DoctorID = c.Int(nullable: false),
-                        PatientID = c.Int(nullable: false),
+                        CoachID = c.Int(nullable: false),
+                        ClientID = c.Int(nullable: false),
                         Status = c.Int(nullable: false),
                         ReviewUser = c.Int(nullable: false),
                         UpdatedOn = c.DateTime(nullable: false),

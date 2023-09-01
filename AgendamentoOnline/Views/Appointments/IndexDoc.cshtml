@@ -5,13 +5,13 @@
 @{
     ViewBag.Title = "Appointments";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Doctor doc = Session["user"] as Doctor;
+    Coach doc = Session["user"] as Coach;
     List<Appointment> appointments = Model.ToList();
     List<Appointment> appointmentsNotConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.REQUESTED)).ToList();
     List<Appointment> appointmentsConfirmed = appointments.Where(a => a.Status.Equals((int)AppointmentStatus.CONFIRMED) || a.Status.Equals((int)AppointmentStatus.RESCHEDULED)).ToList();
 }
 
-<h2>Welcome Doctor @doc.Name</h2>
+<h2>Welcome Coach @doc.Name</h2>
 
 @if (appointmentsConfirmed.Count > 0)
 {
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.ScheduleTime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Patient.Name)
+            @Html.DisplayNameFor(model => model.Client.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Status)
@@ -63,7 +63,7 @@
                 @Html.DisplayFor(modelItem => item.ScheduleTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Patient.Name)
+                @Html.DisplayFor(modelItem => item.Client.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StatusName)
